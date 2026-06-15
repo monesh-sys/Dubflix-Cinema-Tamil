@@ -1,0 +1,253 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+/* HEADER */
+header{
+    background:#000;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+}
+
+.title{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    color:red;
+    font-size:24px;
+    font-weight:bold;
+}
+
+h1{
+    color:rgb(198, 24, 24);
+}
+
+/* LAYOUT */
+.container{
+    display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#1a1a1a;
+    padding:20px;
+    position:fixed;
+    left:0;
+    top:80px;
+    transition:0.3s;
+}
+
+.sidebar h2{
+    margin-bottom:20px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px;
+    margin-bottom:10px;
+    background:#222;
+    border-radius:5px;
+}
+
+.sidebar a:hover{
+    background:#e50914;
+}
+
+/* CONTENT */
+.content{
+    margin-left:220px;
+    padding:20px;
+    transition:0.3s;
+}
+
+/* MOVIE GRID (KEEP YOUR STYLE - FIXED DUPLICATE) */
+.movie-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:20px;
+}
+
+/* MOVIE CARD */
+.movie-card{
+    background:#1b1b1b;
+    border-radius:10px;
+    overflow:hidden;
+    text-align:center;
+}
+
+.movie-card img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+}
+
+.movie-card h3{
+    padding:10px;
+}
+
+.movie-card button{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    margin-bottom:15px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.movie-card button:hover{
+    background:darkred;
+}
+
+/* WATCH PAGE */
+.watch-container{
+    width:90%;
+    max-width:1200px;
+    margin:30px auto;
+}
+
+.watch-container video{
+    width:100%;
+    border-radius:10px;
+}
+
+.back-btn{
+    text-align:center;
+    margin:20px;
+}
+
+.back-btn a{
+    color:white;
+    text-decoration:none;
+    background:red;
+    padding:10px 20px;
+    border-radius:5px;
+}
+
+/* HAMBURGER BUTTON */
+.menu-btn{
+    font-size:30px;
+    background:none;
+    border:none;
+    color:white;
+    cursor:pointer;
+    position:absolute;
+    left:15px;
+    top:20px;
+}
+
+/* HIDE SIDEBAR */
+.sidebar.hide{
+    left:-250px;
+}
+
+/* CONTENT FULL WIDTH */
+.content.full{
+    margin-left:0;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+
+    .sidebar{
+        left:-250px;
+        position:fixed;
+        top:80px;
+        z-index:999;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    .content{
+        margin-left:0;
+    }
+}
+
+@media (max-width:900px){
+    .movie-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media (max-width:480px){
+    .movie-grid{
+        grid-template-columns:1fr;
+    }
+}
+.search-area{
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.search-icon{
+    background:red;
+    border:none;
+    color:white;
+    padding:10px 12px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#searchBox{
+    position:absolute;
+    right:50px;
+    width:0;
+    opacity:0;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    outline:none;
+    transition:0.4s ease;
+}
+
+/* when active */
+#searchBox.active{
+    width:200px;
+    opacity:1;
+}
+h2{
+    color:rgb(198, 24, 24);
+}
+.menu{
+    position:fixed;
+    top:80px;
+    left:10px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.menu button{
+    width:160px;
+    padding:10px;
+    background:#111;
+    color:white;
+    border:1px solid red;
+    cursor:pointer;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+.menu button:hover{
+    background:red;
+}
