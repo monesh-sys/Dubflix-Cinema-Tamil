@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dubfilx Cinema</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    
+    <div class="left-space"></div>
+
+    <h1 class="title">🎬 Dubflix Cinema Tamil</h1>
+
+    <div class="search-area">
+        <button onclick="toggleSearch()" class="search-icon">🔍</button>
+        <input type="text" id="searchBox" placeholder="Search movies...">
+    </div>
+
+</header>
+
+<!-- SIDEBAR + CONTENT -->
+<div class="wrapper">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+        <h2>Menu</h2>
+        <a href="#" onclick="filterMovies('all')">All Movies</a>
+        <a href="#" onclick="filterMovies('horror')">Horror</a>
+        <a href="#" onclick="filterMovies('action')">Action</a>
+        <a href="#" onclick="filterMovies('comedy')">Comedy</a>
+        <a href="#" onclick="filterMovies('romantic')">Romantic</a>
+        <a href="#" onclick="filterMovies('cartoon')">Cartoon</a>
+        <a href="#" onclick="filterMovies('adventure')">Adventure</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="content" class="content">
+        <div id="movieContainer" class="movie-grid"></div>
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
