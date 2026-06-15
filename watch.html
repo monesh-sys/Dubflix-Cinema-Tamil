@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch Movie</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1 id="movieTitle">🎬 Watch Movie</h1>
+</header>
+
+<div class="watch-container">
+    <video id="moviePlayer" controls autoplay>
+        <source id="movieSource" src="" type="video/mp4">
+    </video>
+</div>
+
+<div class="back-btn">
+    <a href="index.html">⬅ Back to Home</a>
+</div>
+
+<script>
+const movie = JSON.parse(localStorage.getItem("selectedMovie"));
+
+if(movie){
+    document.getElementById("movieTitle").textContent = movie.title;
+
+    const player = document.getElementById("moviePlayer");
+    player.src = movie.video;
+    player.load();
+}
+</script>
+
+</body>
+</html>
