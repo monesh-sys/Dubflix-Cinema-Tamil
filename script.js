@@ -2,8 +2,8 @@ const movies = [
 {
     title: "Summer House",
     category: "romantic",
-    image: "posters/summerhouse.jpg",
-    link: "https://drive.google.com/file/d/1U098Pq4C2jr3ZbXe122BSjBR7JQSayHk/view?usp=drive_link"
+    image: "images/image_2.jpg",
+    link: "https://drive.google.com/file/d/1U098Pq4C2jr3ZbXe122BSjBR7JQSayHk/view?usp=sharing"
 }
 ];
 
@@ -17,9 +17,9 @@ movies.forEach(movie => {
     card.setAttribute("data-category", movie.category);
 
     card.innerHTML = `
-        <img src="${movie.poster}">
+        <img src="${movie.image}" alt="${movie.title}">
         <h3>${movie.title}</h3>
-        <button onclick="watchMovie('${movie.title}','${movie.video}')">
+        <button onclick="watchMovie('${movie.title}','${movie.link}')">
             Watch Now
         </button>
     `;
@@ -33,9 +33,14 @@ function watchMovie(title, video){
         "selectedMovie",
         JSON.stringify({
             title:title,
-            video:video
+            link:video
         })
     );
+
+    if (video && !video.endsWith('.mp4')) {
+        window.location.href = video;
+        return;
+    }
 
     window.location.href = "watch.html";
 }
@@ -99,15 +104,3 @@ function filterMovies(category){
 function openPage(page){
     window.location.href = page;
 }
-const container = document.getElementById("movieContainer");
-
-movies.forEach(movie => {
-    container.innerHTML += `
-        <div class="movie-card">
-            <a href="${movie.link}" target="_blank">
-                <img src="${movie.image}" alt="${movie.title}">
-            </a>
-            <h3>${movie.title}</h3>
-        </div>
-    `;
-});
