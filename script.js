@@ -1,45 +1,9 @@
 const movies = [
 {
-    title: "Summer House 2025 | Full Movie in Tamil",
-    poster: "images/Summer House.jpg",
-    video: "movies/Summer House.mp4",
-    category: "romantic"
-},
-{
-    title: "Movie 2",
-    poster: "images/poster2.jpg",
-    video: "movies/movie2.mp4",
-    category: "cartoon"
-},
-{
-    title: "Movie 3",
-    poster: "images/poster3.jpg",
-    video: "movies/movie3.mp4",
-    category: "comedy"
-},
-{
-    title: "Movie 4",
-    poster: "images/poster4.jpg",
-    video: "movies/movie4.mp4",
-    category: "action"
-},
-{
-    title: "Movie 5",
-    poster: "images/poster5.jpg",
-    video: "movies/movie5.mp4",
-    category: "horror"
-},
-{
-    title: "Movie 6",
-    poster: "images/poster6.jpg",
-    video: "movies/movie6.mp4",
-    category: "horror"
-},
-{
-    title: "Movie 7",
-    poster: "images/poster7.jpg",
-    video: "movies/movie7.mp4",
-    category: "adventure"
+    title: "Summer House",
+    category: "romantic",
+    image: "posters/summerhouse.jpg",
+    link: "https://drive.google.com/file/d/1U098Pq4C2jr3ZbXe122BSjBR7JQSayHk/view?usp=drive_link"
 }
 ];
 
@@ -135,3 +99,15 @@ function filterMovies(category){
 function openPage(page){
     window.location.href = page;
 }
+const container = document.getElementById("movieContainer");
+
+movies.forEach(movie => {
+    container.innerHTML += `
+        <div class="movie-card">
+            <a href="${movie.link}" target="_blank">
+                <img src="${movie.image}" alt="${movie.title}">
+            </a>
+            <h3>${movie.title}</h3>
+        </div>
+    `;
+});
