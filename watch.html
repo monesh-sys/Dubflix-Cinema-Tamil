@@ -16,6 +16,7 @@
     <video id="moviePlayer" controls autoplay>
         <source id="movieSource" src="" type="video/mp4">
     </video>
+    <div id="externalLink" class="watch-link"></div>
 </div>
 
 <div class="back-btn">
@@ -24,13 +25,19 @@
 
 <script>
 const movie = JSON.parse(localStorage.getItem("selectedMovie"));
+const watchLink = document.getElementById("externalLink");
 
 if(movie){
     document.getElementById("movieTitle").textContent = movie.title;
 
-    const player = document.getElementById("moviePlayer");
-    player.src = movie.video;
-    player.load();
+    if (movie.link && movie.link.endsWith('.mp4')) {
+        const player = document.getElementById("moviePlayer");
+        player.src = movie.link;
+        player.load();
+    } else if (movie.link) {
+        document.getElementById("moviePlayer").style.display = "none";
+        watchLink.innerHTML = `<p>This movie link is external. <a href="${movie.link}" target="_blank" rel="noopener">Open movie link</a></p>`;
+    }
 }
 </script>
 
