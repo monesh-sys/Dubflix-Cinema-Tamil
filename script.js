@@ -1,6 +1,6 @@
 const movies = [
 {
-    title: "Summer House",
+    title: "Kuberaa",
     category: "thriller, action",
     image: "images/Kubaraa.png",
     link: "https://drive.google.com/file/d/1U098Pq4C2jr3ZbXe122BSjBR7JQSayHk/view?usp=sharing"
