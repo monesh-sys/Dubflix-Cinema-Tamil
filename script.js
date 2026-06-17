@@ -1,9 +1,15 @@
 const movies = [
 {
     title: "Kuberaa",
-    category: "thriller",
+    category: "thriller,action",
     image: "images/Kubaraa.png",
     link: "https://drive.google.com/file/d/1U098Pq4C2jr3ZbXe122BSjBR7JQSayHk/view?usp=sharing"
+},
+{
+    title: "Dawood",
+    category: "comedy,thriller",
+    image: "images/dawood.png",
+    link: "https://drive.google.com/file/d/1g3En2LlxsO6h4bGPw6uKlpCs2iqjoow2/view?usp=sharing"
 }
 ];
 
