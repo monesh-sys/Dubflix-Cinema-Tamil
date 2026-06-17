@@ -13,8 +13,10 @@ const movies = [
 }
 ];
 
+// Movie Container
 const container = document.getElementById("movieContainer");
 
+// Create Movie Cards
 movies.forEach(movie => {
 
     const card = document.createElement("div");
@@ -30,83 +32,127 @@ movies.forEach(movie => {
         </button>
     `;
 
-    document.getElementById("movieContainer").appendChild(card);
+    container.appendChild(card);
 });
 
-function watchMovie(title, video){
+// Watch Movie
+function watchMovie(title, video) {
 
     localStorage.setItem(
         "selectedMovie",
         JSON.stringify({
-            title:title,
-            link:video
+            title: title,
+            link: video
         })
     );
 
-    if (video && !video.endsWith('.mp4')) {
-        window.location.href = video;
+    if (video && !video.endsWith(".mp4")) {
+        window.open(video, "_blank");
         return;
     }
 
     window.location.href = "watch.html";
 }
-function toggleSidebar(){
-    let sidebar = document.querySelector(".sidebar");
-    let content = document.querySelector(".content");
+
+// Sidebar Toggle
+function toggleSidebar() {
+
+    const sidebar = document.querySelector(".sidebar");
+    const content = document.querySelector(".content");
+
+    if (!sidebar) return;
 
     sidebar.classList.toggle("show");
     sidebar.classList.toggle("hide");
-    content.classList.toggle("full");
+
+    if (content) {
+        content.classList.toggle("full");
+    }
 }
-function toggleSearch(){
+
+// Search Box Toggle
+function toggleSearch() {
+
     const box = document.getElementById("searchBox");
+
+    if (!box) return;
+
     box.classList.toggle("active");
 
-    if(box.classList.contains("active")){
+    if (box.classList.contains("active")) {
         box.focus();
     }
 }
+
+// Search Movies
 const searchBox = document.getElementById("searchBox");
 
-searchBox.addEventListener("keyup", function () {
+if (searchBox) {
 
-    let value = this.value.toLowerCase();
-    let movies = document.querySelectorAll(".movie-card");
+    searchBox.addEventListener("keyup", function () {
 
-    movies.forEach(card => {
+        const value = this.value.toLowerCase();
+        const movieCards = document.querySelectorAll(".movie-card");
 
-        let title = card.querySelector("h3").innerText.toLowerCase();
+        movieCards.forEach(card => {
 
-        if (title.includes(value)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
+            const title = card.querySelector("h3").innerText.toLowerCase();
+
+            if (title.includes(value)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
 
     });
 
-});
-function filterMovies(category){
+}
 
-    let movies = document.querySelectorAll(".movie-card");
+// Filter Movies by Category
+function filterMovies(category) {
 
-    movies.forEach(movie => {
+    const movieCards = document.querySelectorAll(".movie-card");
 
-        let type = movie.getAttribute("data-category");
+    movieCards.forEach(movie => {
 
-        if(category === "all"){
+        const type = movie.getAttribute("data-category").toLowerCase();
+
+        if (category === "all") {
             movie.style.display = "block";
         }
-        else if(type === category){
+        else if (type.includes(category.toLowerCase())) {
             movie.style.display = "block";
         }
-        else{
+        else {
             movie.style.display = "none";
         }
 
     });
 
 }
-function openPage(page){
+
+// Open Any Page
+function openPage(page) {
     window.location.href = page;
 }
+
+// Close Sidebar When Clicking Outside
+document.addEventListener("click", function (e) {
+
+    const sidebar = document.querySelector(".sidebar");
+    const menuBtn = document.querySelector(".menu-btn");
+
+    if (!sidebar || !menuBtn) return;
+
+    if (
+        sidebar.classList.contains("show") &&
+        !sidebar.contains(e.target) &&
+        !menuBtn.contains(e.target)
+    ) {
+        sidebar.classList.remove("show");
+        sidebar.classList.add("hide");
+    }
+
+});
