@@ -59,7 +59,9 @@ function displayMovies(movieList) {
 
         <div class="movie-date">
             📅 Added: ${movie.date}
-            Expire: ${movie.expire}
+        </div>
+        <div class="movie-expire">
+            📅 Added: ${movie.expire}
         </div>
     </div>
 `;
