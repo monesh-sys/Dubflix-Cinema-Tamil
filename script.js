@@ -11,25 +11,7 @@ const movies = [
     }
 ];
 
-card.innerHTML = `
-    <div class="movie-image">
-        <img src="${movie.image}" alt="${movie.title}">
 
-        <div class="movie-overlay">
-            <div class="play-button">▶</div>
-            <h2>Watch Now</h2>
-        </div>
-    </div>
-
-    <div class="movie-info">
-        <h3>${movie.title}</h3>
-        <p>${movie.category}</p>
-
-        <div class="movie-date">
-            📅 Added: ${movie.date}
-        </div>
-    </div>
-`;
 // ==============================
 // Get Elements
 // ==============================
@@ -60,26 +42,25 @@ function displayMovies(movieList) {
         card.className = "movie-card";
         card.setAttribute("data-category", movie.category.toLowerCase());
 
-        card.innerHTML = `
-            <div class="movie-image">
+       card.innerHTML = `
+    <div class="movie-image">
+        <img src="${movie.image}" alt="${movie.title}">
 
-                <img src="${movie.image}" alt="${movie.title}">
+        <div class="movie-overlay">
+            <div class="play-button">▶</div>
+            <h2>Watch Now</h2>
+        </div>
+    </div>
 
-                <div class="movie-overlay">
-                    <div class="play-button">
-                        ▶
-                    </div>
+    <div class="movie-info">
+        <h3>${movie.title}</h3>
+        <p>${movie.category}</p>
 
-                    <h2>Watch Now</h2>
-                </div>
-
-            </div>
-
-            <div class="movie-info">
-                <h3>${movie.title}</h3>
-                <p>${movie.category}</p>
-            </div>
-        `;
+        <div class="movie-date">
+            📅 Added: ${movie.date}
+        </div>
+    </div>
+`;
 
         // Entire card clickable
         card.addEventListener("click", () => {
