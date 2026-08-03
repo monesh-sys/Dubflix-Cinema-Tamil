@@ -40,14 +40,46 @@ h1{
 
 /* SIDEBAR */
 .sidebar{
-    width:220px;
-    height:100vh;
-    background:#1a1a1a;
-    padding:20px;
-    position:fixed;
-    left:0;
-    top:80px;
-    transition:0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 260px;
+    height: 100vh;
+
+    background: #111;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 20px;
+
+    scrollbar-width: thin; /* Firefox */
+}
+
+.sidebar::-webkit-scrollbar{
+    width:8px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+    background:#1b1b1b;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+    background:#e50914;
+    border-radius:20px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover{
+    background:#ff2d3b;
+}
+
+.sidebar.hide{
+    transform:translateX(-100%);
+}
+
+.sidebar.show{
+    transform:translateX(0);
 }
 
 .sidebar h2{
