@@ -1,54 +1,88 @@
+// =========================
+// Movie List
+// =========================
 const movies = [
-{
-    title: "Sing Geetham",
-    category: "comedy",
-    image: "images/sing geetham.webp",
-    link: "https://drive.google.com/file/d/1p21WyRywjewLTrfl64b2Bnm815lEiYcY/view?usp=sharing"
-},
+    {
+        title: "Sing Geetham",
+        category: "comedy",
+        image: "images/sing geetham.webp",
+        link: "https://drive.google.com/file/d/1p21WyRywjewLTrfl64b2Bnm815lEiYcY/view?usp=sharing"
+    }
 ];
 
+// =========================
 // Movie Container
+// =========================
 const container = document.getElementById("movieContainer");
 
-// Create Movie Cards
-movies.forEach(movie => {
+// Create "No Movies Found" message
+const noMovie = document.createElement("h2");
+noMovie.id = "noMovie";
+noMovie.innerText = "No Movies Found";
+noMovie.style.textAlign = "center";
+noMovie.style.display = "none";
+noMovie.style.marginTop = "30px";
 
-    const card = document.createElement("div");
-    card.className = "movie-card";
+if (container) {
+    container.after(noMovie);
+}
 
-    card.setAttribute("data-category", movie.category);
+// =========================
+// Display Movies
+// =========================
+function displayMovies(movieList) {
 
-    card.innerHTML = `
-        <img src="${movie.image}" alt="${movie.title}">
-        <h3>${movie.title}</h3>
-        <button onclick="watchMovie('${movie.title}','${movie.link}')">
-            Watch Now
-        </button>
-    `;
+    if (!container) return;
 
-    container.appendChild(card);
-});
+    container.innerHTML = "";
 
-// Watch Movie
-function watchMovie(title, video) {
-
-    localStorage.setItem(
-        "selectedMovie",
-        JSON.stringify({
-            title: title,
-            link: video
-        })
-    );
-
-    if (video && !video.endsWith(".mp4")) {
-        window.open(video, "_blank");
+    if (movieList.length === 0) {
+        noMovie.style.display = "block";
         return;
     }
 
-    window.location.href = "watch.html";
+    noMovie.style.display = "none";
+
+    movieList.forEach(movie => {
+
+        const card = document.createElement("div");
+
+        card.className = "movie-card";
+        card.setAttribute("data-category", movie.category);
+
+        card.innerHTML = `
+            <img src="${movie.image}" alt="${movie.title}">
+            <h3>${movie.title}</h3>
+            <button onclick="watchMovie('${movie.title}','${movie.link}')">
+                Watch Now
+            </button>
+        `;
+
+        container.appendChild(card);
+
+    });
+
 }
 
+displayMovies(movies);
+
+// =========================
+// Watch Movie
+// =========================
+function watchMovie(title, video) {
+
+    localStorage.setItem("selectedMovie", JSON.stringify({
+        title: title,
+        link: video
+    }));
+
+    window.location.href = "watch.html";
+
+}
+
+// =========================
 // Sidebar Toggle
+// =========================
 function toggleSidebar() {
 
     const sidebar = document.querySelector(".sidebar");
@@ -62,9 +96,12 @@ function toggleSidebar() {
     if (content) {
         content.classList.toggle("full");
     }
+
 }
 
+// =========================
 // Search Box Toggle
+// =========================
 function toggleSearch() {
 
     const box = document.getElementById("searchBox");
@@ -76,9 +113,12 @@ function toggleSearch() {
     if (box.classList.contains("active")) {
         box.focus();
     }
+
 }
 
+// =========================
 // Search Movies
+// =========================
 const searchBox = document.getElementById("searchBox");
 
 if (searchBox) {
@@ -86,53 +126,46 @@ if (searchBox) {
     searchBox.addEventListener("keyup", function () {
 
         const value = this.value.toLowerCase();
-        const movieCards = document.querySelectorAll(".movie-card");
 
-        movieCards.forEach(card => {
+        const filtered = movies.filter(movie =>
+            movie.title.toLowerCase().includes(value) ||
+            movie.category.toLowerCase().includes(value)
+        );
 
-            const title = card.querySelector("h3").innerText.toLowerCase();
-
-            if (title.includes(value)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-
-        });
+        displayMovies(filtered);
 
     });
 
 }
 
-// Filter Movies by Category
+// =========================
+// Filter Movies
+// =========================
 function filterMovies(category) {
 
-    const movieCards = document.querySelectorAll(".movie-card");
+    if (category === "all") {
+        displayMovies(movies);
+        return;
+    }
 
-    movieCards.forEach(movie => {
+    const filtered = movies.filter(movie =>
+        movie.category.toLowerCase() === category.toLowerCase()
+    );
 
-        const type = movie.getAttribute("data-category").toLowerCase();
-
-        if (category === "all") {
-            movie.style.display = "block";
-        }
-        else if (type.includes(category.toLowerCase())) {
-            movie.style.display = "block";
-        }
-        else {
-            movie.style.display = "none";
-        }
-
-    });
+    displayMovies(filtered);
 
 }
 
-// Open Any Page
+// =========================
+// Open Page
+// =========================
 function openPage(page) {
     window.location.href = page;
 }
 
-// Close Sidebar When Clicking Outside
+// =========================
+// Close Sidebar
+// =========================
 document.addEventListener("click", function (e) {
 
     const sidebar = document.querySelector(".sidebar");
@@ -150,3 +183,29 @@ document.addEventListener("click", function (e) {
     }
 
 });
+
+// =========================
+// Scroll to Top Button
+// =========================
+window.addEventListener("scroll", function () {
+
+    const topBtn = document.getElementById("topBtn");
+
+    if (!topBtn) return;
+
+    if (window.scrollY > 300) {
+        topBtn.style.display = "block";
+    } else {
+        topBtn.style.display = "none";
+    }
+
+});
+
+function scrollTopPage() {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
