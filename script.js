@@ -3,7 +3,7 @@ const movies = [
     title: "Sing Geetham",
     category: "comedy",
     image: "images/sing geetham.webp",
-    link: "    "
+    link: "https://drive.google.com/file/d/1p21WyRywjewLTrfl64b2Bnm815lEiYcY/view?usp=sharing"
 },
 ];
 
