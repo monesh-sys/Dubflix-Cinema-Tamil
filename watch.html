@@ -4,42 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Watch Movie</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="watch.css">
 </head>
 <body>
 
-<header>
-    <h1 id="movieTitle">🎬 Watch Movie</h1>
-</header>
-
 <div class="watch-container">
-    <video id="moviePlayer" controls autoplay>
-        <source id="movieSource" src="" type="video/mp4">
-    </video>
-    <div id="externalLink" class="watch-link"></div>
+
+    <img id="moviePoster" class="poster">
+
+    <h1 id="movieTitle"></h1>
+
+    <p class="info">
+        🍿 Ready to watch this movie?
+    </p>
+
+    <p class="warning">
+        This movie is hosted on an external website.
+    </p>
+
+    <button id="watchBtn">
+        ▶ Watch Now
+    </button>
+
+    <a href="index.html" class="back">
+        ← Back to Home
+    </a>
+
 </div>
 
-<div class="back-btn">
-    <a href="index.html">⬅ Back to Home</a>
-</div>
-
-<script>
-const movie = JSON.parse(localStorage.getItem("selectedMovie"));
-const watchLink = document.getElementById("externalLink");
-
-if(movie){
-    document.getElementById("movieTitle").textContent = movie.title;
-
-    if (movie.link && movie.link.endsWith('.mp4')) {
-        const player = document.getElementById("moviePlayer");
-        player.src = movie.link;
-        player.load();
-    } else if (movie.link) {
-        document.getElementById("moviePlayer").style.display = "none";
-        watchLink.innerHTML = `<p>This movie link is external. <a href="${movie.link}" target="_blank" rel="noopener">Open movie link</a></p>`;
-    }
-}
-</script>
+<script src="watch.js"></script>
 
 </body>
 </html>
