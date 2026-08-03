@@ -1,35 +1,24 @@
-// =========================
-// Movie List
-// =========================
+// ==============================
+// Movie Data
+// ==============================
 const movies = [
     {
         title: "Sing Geetham",
-        category: "comedy",
+        category: "Comedy",
         image: "images/sing geetham.webp",
         link: "https://drive.google.com/file/d/1p21WyRywjewLTrfl64b2Bnm815lEiYcY/view?usp=sharing"
     }
 ];
 
-// =========================
-// Movie Container
-// =========================
+// ==============================
+// Get Elements
+// ==============================
 const container = document.getElementById("movieContainer");
+const searchBox = document.getElementById("searchBox");
 
-// Create "No Movies Found" message
-const noMovie = document.createElement("h2");
-noMovie.id = "noMovie";
-noMovie.innerText = "No Movies Found";
-noMovie.style.textAlign = "center";
-noMovie.style.display = "none";
-noMovie.style.marginTop = "30px";
-
-if (container) {
-    container.after(noMovie);
-}
-
-// =========================
+// ==============================
 // Display Movies
-// =========================
+// ==============================
 function displayMovies(movieList) {
 
     if (!container) return;
@@ -37,26 +26,45 @@ function displayMovies(movieList) {
     container.innerHTML = "";
 
     if (movieList.length === 0) {
-        noMovie.style.display = "block";
+        container.innerHTML = `
+            <div class="no-movie">
+                <h2>🎬 No Movies Found</h2>
+            </div>
+        `;
         return;
     }
-
-    noMovie.style.display = "none";
 
     movieList.forEach(movie => {
 
         const card = document.createElement("div");
-
         card.className = "movie-card";
-        card.setAttribute("data-category", movie.category);
+        card.setAttribute("data-category", movie.category.toLowerCase());
 
         card.innerHTML = `
-            <img src="${movie.image}" alt="${movie.title}">
-            <h3>${movie.title}</h3>
-            <button onclick="watchMovie('${movie.title}','${movie.link}')">
-                Watch Now
-            </button>
+            <div class="movie-image">
+
+                <img src="${movie.image}" alt="${movie.title}">
+
+                <div class="movie-overlay">
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                    <h2>Watch Now</h2>
+                </div>
+
+            </div>
+
+            <div class="movie-info">
+                <h3>${movie.title}</h3>
+                <p>${movie.category}</p>
+            </div>
         `;
+
+        // Entire card clickable
+        card.addEventListener("click", () => {
+            watchMovie(movie.title, movie.link);
+        });
 
         container.appendChild(card);
 
@@ -66,23 +74,68 @@ function displayMovies(movieList) {
 
 displayMovies(movies);
 
-// =========================
+// ==============================
 // Watch Movie
-// =========================
-function watchMovie(title, video) {
+// ==============================
+function watchMovie(title, link) {
 
-    localStorage.setItem("selectedMovie", JSON.stringify({
-        title: title,
-        link: video
-    }));
+    localStorage.setItem(
+        "selectedMovie",
+        JSON.stringify({
+            title: title,
+            link: link
+        })
+    );
 
     window.location.href = "watch.html";
 
 }
 
-// =========================
-// Sidebar Toggle
-// =========================
+// ==============================
+// Search Movies
+// ==============================
+if (searchBox) {
+
+    searchBox.addEventListener("keyup", function () {
+
+        const value = this.value.toLowerCase();
+
+        const filtered = movies.filter(movie =>
+
+            movie.title.toLowerCase().includes(value) ||
+            movie.category.toLowerCase().includes(value)
+
+        );
+
+        displayMovies(filtered);
+
+    });
+
+}
+
+// ==============================
+// Filter Movies
+// ==============================
+function filterMovies(category) {
+
+    if (category === "all") {
+        displayMovies(movies);
+        return;
+    }
+
+    const filtered = movies.filter(movie =>
+
+        movie.category.toLowerCase() === category.toLowerCase()
+
+    );
+
+    displayMovies(filtered);
+
+}
+
+// ==============================
+// Sidebar
+// ==============================
 function toggleSidebar() {
 
     const sidebar = document.querySelector(".sidebar");
@@ -99,9 +152,9 @@ function toggleSidebar() {
 
 }
 
-// =========================
-// Search Box Toggle
-// =========================
+// ==============================
+// Search Box Animation
+// ==============================
 function toggleSearch() {
 
     const box = document.getElementById("searchBox");
@@ -116,56 +169,18 @@ function toggleSearch() {
 
 }
 
-// =========================
-// Search Movies
-// =========================
-const searchBox = document.getElementById("searchBox");
-
-if (searchBox) {
-
-    searchBox.addEventListener("keyup", function () {
-
-        const value = this.value.toLowerCase();
-
-        const filtered = movies.filter(movie =>
-            movie.title.toLowerCase().includes(value) ||
-            movie.category.toLowerCase().includes(value)
-        );
-
-        displayMovies(filtered);
-
-    });
-
-}
-
-// =========================
-// Filter Movies
-// =========================
-function filterMovies(category) {
-
-    if (category === "all") {
-        displayMovies(movies);
-        return;
-    }
-
-    const filtered = movies.filter(movie =>
-        movie.category.toLowerCase() === category.toLowerCase()
-    );
-
-    displayMovies(filtered);
-
-}
-
-// =========================
+// ==============================
 // Open Page
-// =========================
+// ==============================
 function openPage(page) {
+
     window.location.href = page;
+
 }
 
-// =========================
-// Close Sidebar
-// =========================
+// ==============================
+// Close Sidebar Outside Click
+// ==============================
 document.addEventListener("click", function (e) {
 
     const sidebar = document.querySelector(".sidebar");
@@ -178,22 +193,24 @@ document.addEventListener("click", function (e) {
         !sidebar.contains(e.target) &&
         !menuBtn.contains(e.target)
     ) {
+
         sidebar.classList.remove("show");
         sidebar.classList.add("hide");
+
     }
 
 });
 
-// =========================
-// Scroll to Top Button
-// =========================
-window.addEventListener("scroll", function () {
+// ==============================
+// Scroll To Top Button
+// ==============================
+window.addEventListener("scroll", () => {
 
     const topBtn = document.getElementById("topBtn");
 
     if (!topBtn) return;
 
-    if (window.scrollY > 300) {
+    if (window.scrollY > 250) {
         topBtn.style.display = "block";
     } else {
         topBtn.style.display = "none";
