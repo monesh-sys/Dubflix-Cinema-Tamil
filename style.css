@@ -74,14 +74,6 @@ h1{
     background:#ff2d3b;
 }
 
-.sidebar.hide{
-    transform:translateX(-100%);
-}
-
-.sidebar.show{
-    transform:translateX(0);
-}
-
 .sidebar h2{
     margin-bottom:20px;
 }
