@@ -15,7 +15,7 @@ const movies = [
 {
     title: "Sing Geetham",
     category: "comedy",
-    image: "images/dawood.png",
+    image: "images/sing geetham.webp",
     link: "    "
 },
 ];
