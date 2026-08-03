@@ -226,3 +226,24 @@ function scrollTopPage() {
     });
 
 }
+
+// Show popup after page loads
+window.addEventListener("load", () => {
+
+    const popup = document.getElementById("noticePopup");
+
+    // Show only once per browser session
+    if(sessionStorage.getItem("noticeClosed")){
+        popup.style.display = "none";
+    }
+
+});
+
+// Close popup
+function closeNotice(){
+
+    document.getElementById("noticePopup").style.display = "none";
+
+    sessionStorage.setItem("noticeClosed","true");
+
+}
