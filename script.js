@@ -7,9 +7,29 @@ const movies = [
         category: "Comedy",
         image: "images/sing geetham.jpg",
         link: "https://drive.google.com/file/d/1p21WyRywjewLTrfl64b2Bnm815lEiYcY/view?usp=sharing"
+        date: "03 August 2026"
     }
 ];
 
+card.innerHTML = `
+    <div class="movie-image">
+        <img src="${movie.image}" alt="${movie.title}">
+
+        <div class="movie-overlay">
+            <div class="play-button">▶</div>
+            <h2>Watch Now</h2>
+        </div>
+    </div>
+
+    <div class="movie-info">
+        <h3>${movie.title}</h3>
+        <p>${movie.category}</p>
+
+        <div class="movie-date">
+            📅 Added: ${movie.date}
+        </div>
+    </div>
+`;
 // ==============================
 // Get Elements
 // ==============================
