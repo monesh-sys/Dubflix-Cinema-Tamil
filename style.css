@@ -453,3 +453,18 @@ h2{
     font-size:13px;
     font-weight:600;
 }
+
+.sidebar a[href="movie-req.html"]{
+    background:#e50914;
+    color:#fff;
+    font-weight:bold;
+    border-radius:8px;
+    margin:10px;
+    text-align:center;
+    transition:.3s;
+}
+
+.sidebar a[href="movie-req.html"]:hover{
+    background:#ff2d3b;
+    transform:scale(1.05);
+}
