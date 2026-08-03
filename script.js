@@ -9,7 +9,17 @@ const movies = [
         link: "https://drive.google.com/file/d/1p21WyRywjewLTrfl64b2Bnm815lEiYcY/view?usp=sharing",
         date: "03 Aug 2026",
         expire: "03 Oct 2026"
-    }
+    },
+
+    {
+       title: "Summer House",
+        category: "Comedy, Romantic",
+        image: "images/summer house.jpg",
+        link: "",
+        date: "03 Aug 2026",
+        expire: "03 Oct 2026"  
+    },
+    
 ];
 
 
