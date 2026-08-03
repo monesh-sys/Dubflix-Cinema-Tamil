@@ -11,6 +11,13 @@ const movies = [
     image: "images/dawood.png",
     link: "https://drive.google.com/file/d/1g3En2LlxsO6h4bGPw6uKlpCs2iqjoow2/view?usp=sharing"
 }
+
+{
+    title: "Sing Geetham",
+    category: "comedy",
+    image: "images/dawood.png",
+    link: "    "
+},
 ];
 
 // Movie Container
