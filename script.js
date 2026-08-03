@@ -7,7 +7,8 @@ const movies = [
         category: "Comedy",
         image: "images/sing geetham.jpg",
         link: "https://drive.google.com/file/d/1p21WyRywjewLTrfl64b2Bnm815lEiYcY/view?usp=sharing",
-        date: "03 August 2026"
+        date: "03 Aug 2026",
+        expire: "03 Oct 2026"
     }
 ];
 
@@ -58,6 +59,7 @@ function displayMovies(movieList) {
 
         <div class="movie-date">
             📅 Added: ${movie.date}
+            Expire: ${movie.expire}
         </div>
     </div>
 `;
