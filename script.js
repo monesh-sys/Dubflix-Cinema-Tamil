@@ -11,14 +11,7 @@ const movies = [
         expire: "03 Oct 2026"
     },
 
-    {
-       title: "Summer House",
-        category: "Comedy, Romantic",
-        image: "images/summer house.jpeg",
-        link: "",
-        date: "03 Aug 2026",
-        expire: "03 Oct 2026"  
-    },
+    
 
      {
        title: "Viswanath And Sons",
@@ -27,6 +20,15 @@ const movies = [
         link: "https://drive.google.com/file/d/1F0o_9owrjP3I7dzG9qN9Ol7MK2gu81Qd/view?usp=sharing",
         date: "24 Aug 2026",
         expire: "24 Oct 2026"  
+    },
+
+    {
+       title: "DC",
+        category: "Thrill, Romantic",
+        image: "images/dc.jpeg",
+        link: "https://drive.google.com/file/d/1F0o_9owrjP3I7dzG9qN9Ol7MK2gu81Qd/view?usp=sharing",
+        date: "25 Aug 2026",
+        expire: "25 Oct 2026"  
     },
     
 ];
