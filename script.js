@@ -24,7 +24,7 @@ const movies = [
        title: "Viswanath And Sons",
         category: "Comedy, Romantic",
         image: "images/viswanath and sons.jpg",
-        link: "",
+        link: "https://drive.google.com/file/d/1F0o_9owrjP3I7dzG9qN9Ol7MK2gu81Qd/view?usp=sharing",
         date: "24 Aug 2026",
         expire: "24 Oct 2026"  
     },
