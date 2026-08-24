@@ -25,7 +25,7 @@ const movies = [
     {
        title: "DC",
         category: "Thrill, Romantic",
-        image: "images/dc.jpeg",
+        image: "images/dc.jpg",
         link: "https://drive.google.com/file/d/1F0o_9owrjP3I7dzG9qN9Ol7MK2gu81Qd/view?usp=sharing",
         date: "25 Aug 2026",
         expire: "25 Oct 2026"  
