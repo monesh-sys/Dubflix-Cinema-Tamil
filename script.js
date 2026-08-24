@@ -19,6 +19,15 @@ const movies = [
         date: "03 Aug 2026",
         expire: "03 Oct 2026"  
     },
+
+     {
+       title: "Viswanath And Sons",
+        category: "Comedy, Romantic",
+        image: "images/viswanath and sons.jpg",
+        link: "",
+        date: "24 Aug 2026",
+        expire: "24 Oct 2026"  
+    },
     
 ];
 
