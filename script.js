@@ -14,7 +14,7 @@ const movies = [
     {
        title: "Summer House",
         category: "Comedy, Romantic",
-        image: "images/summer house.jpg",
+        image: "images/summer house.jpeg",
         link: "",
         date: "03 Aug 2026",
         expire: "03 Oct 2026"  
